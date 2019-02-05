@@ -14,6 +14,7 @@ var PushToArray = function(currentArray){
     
 }
 
+/*
 PushToArray(pack1);
 PushToArray(pack1);
 PushToArray(pack1);
@@ -23,7 +24,7 @@ PushToArray(pack2);
 PushToArray(pack2);
 PushToArray(pack2);
 PushToArray(pack2);
-
+*/
 //console.log(pack1);
 //console.log(pack2);
 
@@ -106,7 +107,7 @@ var Combat = function(object1, object2){
 
 }
 
-console.log(Combat(pack1[3], pack2[4]));
+//console.log(Combat(pack1[3], pack2[4]));
 
 
 
@@ -115,12 +116,18 @@ console.log("Player Two Score : " + playerTwoScore);
 
 //Because of loading delay
 window.onload = function (){
-    document.getElementById("combat").addEventListener("click", test);
+    document.getElementById("combat").addEventListener("click", CombatInitialization);
+    document.getElementById("pushTOArray").addEventListener("click", PushToArrayFunction);
 }
 
+var PushToArrayFunction = function(){
+    PushToArray(pack1);
+    PushToArray(pack2);
+}
 
-var test = function(){
+var CombatInitialization = function(){
     console.log("Testing Message from test function");
+    Combat(pack1[3], pack2[4]);
 }
 
 
