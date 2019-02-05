@@ -14,7 +14,8 @@ var PushToArray = function(currentArray){
     
 }
 
-/*
+
+PushToArray(pack1);
 PushToArray(pack1);
 PushToArray(pack1);
 PushToArray(pack1);
@@ -24,7 +25,8 @@ PushToArray(pack2);
 PushToArray(pack2);
 PushToArray(pack2);
 PushToArray(pack2);
-*/
+PushToArray(pack2);
+
 //console.log(pack1);
 //console.log(pack2);
 
@@ -105,29 +107,57 @@ var Combat = function(object1, object2){
         //It will be great if I can add eventHandlers
     }
 
+    
 }
 
-//console.log(Combat(pack1[3], pack2[4]));
-
-
-
-console.log("Player One Score : " + playerOneScore);
-console.log("Player Two Score : " + playerTwoScore);
 
 //Because of loading delay
 window.onload = function (){
     document.getElementById("combat").addEventListener("click", CombatInitialization);
     document.getElementById("pushTOArray").addEventListener("click", PushToArrayFunction);
+    FillTheDeck();
+    
 }
 
 var PushToArrayFunction = function(){
     PushToArray(pack1);
     PushToArray(pack2);
+    console.log(pack1.length);
 }
 
-var CombatInitialization = function(){
-    console.log("Testing Message from test function");
+var CombatInitialization = function(){    
     Combat(pack1[3], pack2[4]);
+    document.querySelector("#player1Score").textContent = playerOneScore;
+    document.querySelector("#player2Score").textContent = playerTwoScore;
 }
+
+
+
+//Setting The Deck
+var FillTheDeck = function(){
+    var i;
+    var j;
+     
+    for (i=1; i<6; i++){//card
+            
+            document.querySelector("#Player1_Card"+i+"_Row1").textContent = "Card_"+ i;
+            document.querySelector("#Player1_Card"+i+"_Row2").textContent = pack1[i][2];
+            document.querySelector("#Player1_Card"+i+"_Row3").textContent = pack1[i][3];
+            document.querySelector("#Player1_Card"+i+"_Row4").textContent = pack1[i][4];
+            document.querySelector("#Player1_Card"+i+"_Row5").textContent = pack1[i][5];
+            document.querySelector("#Player1_Card"+i+"_Row6").textContent = pack1[i][6];
+
+            document.querySelector("#Player2_Card"+i+"_Row1").textContent = "Card_"+ i;
+            document.querySelector("#Player2_Card"+i+"_Row2").textContent = pack2[i][2];
+            document.querySelector("#Player2_Card"+i+"_Row3").textContent = pack2[i][3];
+            document.querySelector("#Player2_Card"+i+"_Row4").textContent = pack2[i][4];
+            document.querySelector("#Player2_Card"+i+"_Row5").textContent = pack2[i][5];
+            document.querySelector("#Player2_Card"+i+"_Row6").textContent = pack2[i][6];
+
+            
+    }
+    
+}
+
 
 
