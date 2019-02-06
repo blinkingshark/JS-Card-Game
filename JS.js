@@ -55,16 +55,16 @@ var Combat = function(object1, object2){
     if (strength>0){
     winStrength = 2;
     }
-    if (energy){
+    if (energy>0){
         winEnergy = 2;
     }
-    if (dexterity){
+    if (dexterity>0){
        winDexterty =1;
     }
-    if (accuracy){
+    if (accuracy>0){
         winAccuracy = 1;
     }
-    if (defece){
+    if (defece>0){
         winDefece = 1;
     }
 
@@ -75,14 +75,14 @@ var Combat = function(object1, object2){
     console.log(winAccuracy);
     console.log(winDefece);
 
-   
+    console.log("--------------");
 
     console.log("Total" + (winStrength+winEnergy+winDexterty+winAccuracy+winDefece));
 
     console.log("--------------");
     
     if ( (winStrength + winEnergy + winDexterty + winAccuracy+winDefece) > 0 ){
-        console.log("First Arg Wins !");
+        //console.log("First Arg Wins !");
         if(object1[0] == 1){
             playerOneScore ++;            
         }
@@ -95,7 +95,7 @@ var Combat = function(object1, object2){
     }
     else {
 
-        console.log("Second Arg Wins !");
+        //console.log("Second Arg Wins !");
         if(object2[0] == 1){
             playerOneScore ++;            
         }
@@ -122,13 +122,79 @@ window.onload = function (){
 var PushToArrayFunction = function(){
     PushToArray(pack1);
     PushToArray(pack2);
-    console.log(pack1.length);
+    //console.log(pack1.length);
 }
 
-var CombatInitialization = function(){    
-    Combat(pack1[3], pack2[4]);
+var CombatInitialization = function(){
+        
+    //Checking the selection and Combating
+    var pack1SendingArg=0;
+    if (document.getElementById("player1_radio_1").checked == true){
+        pack1SendingArg=1;
+    }
+    else if (document.getElementById("player1_radio_2").checked == true){
+        pack1SendingArg=2;
+    }
+    else if (document.getElementById("player1_radio_3").checked == true){
+        pack1SendingArg=3;
+    }
+    else if (document.getElementById("player1_radio_4").checked == true){
+        pack1SendingArg=4;
+    }
+    else if (document.getElementById("player1_radio_5").checked == true){
+        pack1SendingArg=5;
+    }
+    else{
+        alert("No Selection Other");
+    }
+
+
+    var pack2SendingArg=0;
+    if (document.getElementById("player2_radio_1").checked == true){
+        pack2SendingArg=1;
+    }
+    else if (document.getElementById("player2_radio_2").checked == true){
+        pack2SendingArg=2;
+    }
+    else if (document.getElementById("player2_radio_3").checked == true){
+        pack2SendingArg=3;
+    }
+    else if (document.getElementById("player2_radio_4").checked == true){
+        pack2SendingArg=4;
+    }
+    else if (document.getElementById("player2_radio_5").checked == true){
+        pack2SendingArg=5;
+    }
+    else{
+        alert("No Selection Other");
+    }
+
+    
+    Combat(pack1[pack1SendingArg], pack2[pack2SendingArg]);
+
     document.querySelector("#player1Score").textContent = playerOneScore;
     document.querySelector("#player2Score").textContent = playerTwoScore;
+
+    var i=0;
+    //console.log(pack1);
+    //console.log(pack2);
+    //Disabling used elements
+    for(i=1; i<6; i++){
+        //console.log("Mysterious"+i);
+        if(pack1[i][1]==0){
+            document.getElementById("player1_radio_"+i).disabled = true;      
+            //console.log("Mysterious Player 1"+i);
+        }
+        if(pack2[i][1]==0){
+            //console.log("Mysterious Player 2"+i);
+            
+            document.getElementById("player2_radio_"+i).disabled = true;          
+        }
+
+        //Unchecking
+        document.getElementById("player1_radio_"+i).checked = false;
+        document.getElementById("player2_radio_"+i).checked = false;        
+    }
 }
 
 
